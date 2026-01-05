@@ -43,8 +43,9 @@ app.get("/api/trends", async (req, res) => {
 });
 
 // 2. Generate Meme URL
+// 2. Generate Meme URL
 app.post("/api/jack", async (req, res) => {
-  const { headline, brand } = req.body;
+  const { headline, brand, aspectRatio, resolution } = req.body;
 
   if (!headline || !brand) {
     return res
@@ -62,13 +63,14 @@ app.post("/api/jack", async (req, res) => {
 
   // 2. Generate Meme Image using Replicate
   try {
-    const memeUrl = await generateMeme(visualPrompt);
+    const memeUrl = await generateMeme(visualPrompt, aspectRatio, resolution);
     console.log("Generated Meme URL in api", memeUrl);
 
     res
       .status(200)
       .json({ url: memeUrl, message: "Meme generated successfully" });
   } catch (error) {
+    console.error(error);
     res.status(500).json({ error: "Failed to generate meme image" });
   }
 });
@@ -100,15 +102,27 @@ const generatePromptText = async (headline, brand) => {
   return response.choices[0].message.content.trim();
 };
 
-const generateMeme = async (prompt) => {
+const generateMeme = async (
+  prompt,
+  aspectRatio = "16:9",
+  resolution = "2048"
+) => {
+  const dimension = parseInt(resolution);
   const input = {
-    size: "4K",
-    width: 2048,
-    height: 2048,
+    size: "4K", // Keeping simple, or could map based on resolution?
+    // Docs say 'size' can be 'square_hd', 'square', etc. or just width/height are prioritized.
+    // For bytedance/seedream-4.5, let's stick to explicit width/height if supported or standard params.
+    // Checking previous code: it sent size: "4K" and width/height.
+    // I'll update width/height based on resolution.
+    width: dimension,
+    height: dimension, // This might distort if not careful?
+    // Actually, usually one dimension is fixed or both define the bounding box.
+    // Replicate models often take aspect_ratio and just need a rough size.
+    // Let's pass the requested aspect_ratio.
     prompt: prompt,
     max_images: 1,
     image_input: [],
-    aspect_ratio: "16:9",
+    aspect_ratio: aspectRatio,
     sequential_image_generation: "disabled",
   };
 

@@ -63,6 +63,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
   jackBtn.addEventListener("click", async () => {
     const brandContext = brandInput.value.trim();
+    const aspectRatio = document.getElementById("aspect-ratio").value;
+    const resolution = document.getElementById("resolution").value;
+
     if (!currentHeadline || !brandContext) return;
 
     jackBtn.textContent = "Generating...";
@@ -77,6 +80,8 @@ document.addEventListener("DOMContentLoaded", () => {
         body: JSON.stringify({
           headline: currentHeadline,
           brand: brandContext,
+          aspectRatio,
+          resolution,
         }),
       });
 

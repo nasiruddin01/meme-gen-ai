@@ -9,7 +9,7 @@
 }
 
 body {
-  font-family: 'Inter', sans-serif;
+  font-family: 'Rajdhani', sans-serif;
   background-color: #f3e5f5; /* Light purple pattern bg mock */
   background-image: radial-gradient(#e1bee7 1px, transparent 1px);
   background-size: 20px 20px;
@@ -26,12 +26,12 @@ body {
   width: 95%;
   max-width: 1400px;
   background: var(--white);
-  border-radius: 20px;
+  border-radius: 10px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  min-height: 80vh;
+  min-height: 90vh;
 }
 
 header {
@@ -40,20 +40,41 @@ header {
   background: #fff;
 }
 
+.brand-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: flex-start;
+  gap: 15px;
+}
+
+.logo {
+
+  height: 40px;
+  width: auto;
+}
+
+.header-text {
+  display: flex;
+  flex-direction: column;
+}
+
 header h1 {
   margin: 0;
-  font-size: 24px;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 28px;
   background: var(--primary-gradient);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
-  font-weight: 800;
+  font-weight: 900;
   text-transform: uppercase;
-  letter-spacing: 1px;
+  letter-spacing: 2px;
+  line-height: 1.1;
 }
 
 header p {
-  margin: 5px 0 0;
+  margin: 0;
   color: var(--text-secondary);
   font-size: 14px;
 }

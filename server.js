@@ -44,8 +44,9 @@ app.get("/api/trends", async (req, res) => {
 
 // 2. Generate Meme URL
 // 2. Generate Meme URL
-app.post("/api/jack", async (req, res) => {
-  const { headline, brand, aspectRatio, resolution } = req.body;
+// 2. Generate Prompt
+app.post("/api/generate-prompt", async (req, res) => {
+  const { headline, brand } = req.body;
 
   if (!headline || !brand) {
     return res
@@ -53,24 +54,29 @@ app.post("/api/jack", async (req, res) => {
       .json({ error: "Headline and brand context are required" });
   }
 
-  // 1. Generate Prompt using OpenAI
-  let visualPrompt;
   try {
-    visualPrompt = await generatePromptText(headline, brand);
+    const visualPrompt = await generatePromptText(headline, brand);
+    res.json({ prompt: visualPrompt });
   } catch (error) {
-    return res.status(500).json({ error: "Failed to generate meme prompt" });
+    console.error("Error generating prompt:", error);
+    res.status(500).json({ error: "Failed to generate meme prompt" });
+  }
+});
+
+// 3. Generate Image
+app.post("/api/generate-image", async (req, res) => {
+  const { prompt, aspectRatio, resolution } = req.body;
+
+  if (!prompt) {
+    return res.status(400).json({ error: "Prompt is required" });
   }
 
-  // 2. Generate Meme Image using Replicate
   try {
-    const memeUrl = await generateMeme(visualPrompt, aspectRatio, resolution);
-    console.log("Generated Meme URL in api", memeUrl);
-
-    res
-      .status(200)
-      .json({ url: memeUrl, message: "Meme generated successfully" });
+    const memeUrl = await generateMeme(prompt, aspectRatio, resolution);
+    console.log("Generated Meme URL:", memeUrl);
+    res.json({ url: memeUrl });
   } catch (error) {
-    console.error(error);
+    console.error("Error generating image:", error);
     res.status(500).json({ error: "Failed to generate meme image" });
   }
 });

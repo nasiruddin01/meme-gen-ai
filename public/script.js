@@ -3,7 +3,13 @@ document.addEventListener("DOMContentLoaded", () => {
   const selectedTrendDisplay = document.getElementById("selected-trend");
   const jackBtn = document.getElementById("jack-btn");
   const brandInput = document.getElementById("brand-context");
-  const resultArea = document.getElementById("result-area");
+
+  // Progress Elements
+  const progressContainer = document.getElementById("progress-container");
+  const progressStatus = document.getElementById("progress-status");
+  const progressFill = document.getElementById("progress-fill");
+  const emptyState = document.getElementById("empty-state");
+  const generatedContent = document.getElementById("generated-content");
   const memeImage = document.getElementById("meme-image");
   const downloadLink = document.getElementById("download-link");
 
@@ -68,47 +74,87 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (!currentHeadline || !brandContext) return;
 
+    // Reset UI State
     jackBtn.textContent = "Generating...";
     jackBtn.disabled = true;
 
+    emptyState.classList.add("hidden");
+    generatedContent.classList.add("hidden");
+    progressContainer.classList.remove("hidden");
+
+    // Step 0: Start
+    updateProgress(10, "Analyzing trend and brand context...");
+
     try {
-      const response = await fetch("/api/jack", {
+      // Step 1: Generate Prompt
+      const promptResponse = await fetch("/api/generate-prompt", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           headline: currentHeadline,
           brand: brandContext,
+        }),
+      });
+
+      if (!promptResponse.ok) throw new Error("Failed to generate prompt");
+      const promptData = await promptResponse.json();
+
+      updateProgress(50, "Dreaming up a visual concept...");
+
+      // Step 2: Generate Image
+      const imageResponse = await fetch("/api/generate-image", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          prompt: promptData.prompt,
           aspectRatio,
           resolution,
         }),
       });
 
-      const data = await response.json();
+      if (!imageResponse.ok) throw new Error("Failed to generate image");
+      const imageData = await imageResponse.json();
 
-      if (data.url) {
-        showMeme(data.url);
+      updateProgress(90, "Finishing touches...");
+
+      if (imageData.url) {
+        // Small delay to let user see 90%
+        setTimeout(() => {
+          updateProgress(100, "Done!");
+          setTimeout(() => {
+            showMeme(imageData.url);
+          }, 500);
+        }, 500);
       } else {
-        alert("Failed to generate meme");
+        throw new Error("No image URL returned");
       }
     } catch (error) {
       console.error(error);
-      alert("Error connecting to server");
+      alert("Error: " + error.message);
+      // Reset to empty state or previous state on error
+      resetUI();
     } finally {
       jackBtn.textContent = "Jack this Trend";
       jackBtn.disabled = false;
     }
   });
 
+  function updateProgress(percent, text) {
+    progressFill.style.width = `${percent}%`;
+    if (text) progressStatus.textContent = text;
+  }
+
+  function resetUI() {
+    progressContainer.classList.add("hidden");
+    emptyState.classList.remove("hidden");
+  }
+
   function showMeme(url) {
     memeImage.src = url;
     downloadLink.href = url;
 
     // Toggle UI state
-    document.getElementById("empty-state").classList.add("hidden");
-    document.getElementById("generated-content").classList.remove("hidden");
-
-    // Optional: adding a fade-in effect via class could be done here if CSS supports it
+    progressContainer.classList.add("hidden");
+    generatedContent.classList.remove("hidden");
   }
 });

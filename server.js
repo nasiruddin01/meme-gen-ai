@@ -31,7 +31,7 @@ app.get("/api/trends", async (req, res) => {
     // Public RSS feed (No API Key needed)
     const feed = await parser.parseURL("http://feeds.bbci.co.uk/news/rss.xml");
     console.log(feed);
-    const topStories = feed.items.slice(0, 5).map((item) => ({
+    const topStories = feed.items.map((item) => ({
       title: item.title,
       link: item.link,
     }));

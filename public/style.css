@@ -31,7 +31,7 @@ body {
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  min-height: 90vh;
+  height: 90vh;
 }
 
 header {

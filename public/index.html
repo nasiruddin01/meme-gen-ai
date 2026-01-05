@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Meme-jacker Demo</title>
+    <title>Meme Jacker</title>
     <link rel="stylesheet" href="style.css" />
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap"
@@ -13,66 +13,86 @@
   <body>
     <div class="container">
       <header>
-        <h1>Meme-jacker 3000</h1>
-        <p>News-to-Meme Engine (Demo)</p>
+        <h1>Meme Jacker</h1>
+        <p>News to Meme Engine</p>
       </header>
 
       <main>
-        <div class="column left-column">
+      <main class="app-layout">
+        <!-- Sidebar: Trending News -->
+        <aside class="sidebar">
           <h2>Trending Now</h2>
           <div id="trends-list" class="trends-container">
             <div class="loading">Loading trends...</div>
           </div>
-        </div>
+        </aside>
 
-        <div class="column right-column">
-          <div class="config-box">
-            <h2>Brand Configuration</h2>
-            <div class="form-group">
-              <label for="brand-context">What does your brand do?</label>
-              <input
-                type="text"
-                id="brand-context"
-                placeholder="e.g., We sell spicy hot sauce"
-              />
+        <!-- Main Workspace -->
+        <div class="workspace">
+          <!-- Input Section -->
+          <section class="config-panel">
+            <div class="config-box">
+
+              
+              <div class="form-group primary-input">
+                 <label for="brand-context">Brand Context</label>
+                 <input
+                  type="text"
+                  id="brand-context"
+                  placeholder="e.g., We sell spicy hot sauce"
+                />
+              </div>
+
+              <div class="form-row">
+                 <div class="form-group">
+                  <label for="resolution">Resolution</label>
+                  <select id="resolution">
+                    <option value="1024">2K (Standard)</option>
+                    <option value="2048" selected>4K (High Res)</option>
+                  </select>
+                </div>
+
+                <div class="form-group">
+                  <label for="aspect-ratio">Aspect Ratio</label>
+                  <select id="aspect-ratio">
+                    <option value="1:1">1:1 (Square)</option>
+                    <option value="16:9" selected>16:9 (Landscape)</option>
+                    <option value="9:16">9:16 (Portrait)</option>
+                  </select>
+                </div>
+              </div>
+              
+              <div class="selected-trend-info">
+                 <small>Selected Trend:</small>
+                 <div id="selected-trend" class="selected-trend-text">No trend selected</div>
+              </div>
+
+              <button id="jack-btn" disabled>GENERATE ARTWORK →</button>
+              
+              <div class="footer-note">
+                  Generations Left: Loading... <br>
+                  Please use this tool responsibly.
+              </div>
             </div>
+          </section>
 
-            <div class="form-group">
-              <label for="aspect-ratio">Aspect Ratio</label>
-              <select id="aspect-ratio">
-                <option value="1:1">1:1 (Square)</option>
-                <option value="16:9" selected>16:9 (Landscape)</option>
-                <option value="9:16">9:16 (Portrait)</option>
-                <option value="4:3">4:3</option>
-                <option value="3:4">3:4</option>
-              </select>
+          <!-- Output Section -->
+          <section class="result-panel">
+            <div id="result-area" class="result-area">
+               <!-- Initial State / Empty State -->
+               <div id="empty-state" class="empty-state">
+                  <div class="empty-icon">🖼️</div>
+                  <h3>Ready to Create</h3>
+                  <p>Select a trend and configure settings to start generating your masterpiece.</p>
+               </div>
+               
+               <!-- Result State -->
+               <div id="generated-content" class="generated-content hidden">
+                  <img id="meme-image" src="" alt="Generated Meme" />
+                  <a id="download-link" href="#" target="_blank" class="download-btn">Download Artwork</a>
+               </div>
             </div>
-
-            <div class="form-group">
-              <label for="resolution">Resolution</label>
-              <select id="resolution">
-                <option value="1024">2k (1024x1024)</option>
-                <option value="2048" selected>4k (2048x2048)</option>
-              </select>
-            </div>
-          </div>
-
-          <div class="action-box">
-            <h3>Selected Trend</h3>
-            <div id="selected-trend" class="selected-trend-display">
-              No trend selected
-            </div>
-            <button id="jack-btn" disabled>Jack this Trend</button>
-          </div>
-
-          <div id="result-area" class="result-area hidden">
-            <h3>Generated Meme</h3>
-            <img id="meme-image" src="" alt="Generated Meme" />
-            <br />
-            <a id="download-link" href="#" target="_blank" class="download-btn"
-              >Open/Save Image</a
-            >
-          </div>
+          </section>
         </div>
       </main>
     </div>

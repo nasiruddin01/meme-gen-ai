@@ -104,8 +104,11 @@ document.addEventListener("DOMContentLoaded", () => {
   function showMeme(url) {
     memeImage.src = url;
     downloadLink.href = url;
-    resultArea.classList.remove("hidden");
-    // Scroll to result
-    resultArea.scrollIntoView({ behavior: "smooth" });
+
+    // Toggle UI state
+    document.getElementById("empty-state").classList.add("hidden");
+    document.getElementById("generated-content").classList.remove("hidden");
+
+    // Optional: adding a fade-in effect via class could be done here if CSS supports it
   }
 });

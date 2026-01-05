@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Meme-jacker Demo</title>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <h1>Meme-jacker 3000</h1>
+        <p>News-to-Meme Engine (Demo)</p>
+      </header>
+
+      <main>
+        <div class="column left-column">
+          <h2>Trending Now</h2>
+          <div id="trends-list" class="trends-container">
+            <div class="loading">Loading trends...</div>
+          </div>
+        </div>
+
+        <div class="column right-column">
+          <div class="config-box">
+            <h2>Brand Configuration</h2>
+            <div class="form-group">
+              <label for="brand-context">What does your brand do?</label>
+              <input
+                type="text"
+                id="brand-context"
+                placeholder="e.g., We sell spicy hot sauce"
+              />
+            </div>
+          </div>
+
+          <div class="action-box">
+            <h3>Selected Trend</h3>
+            <div id="selected-trend" class="selected-trend-display">
+              No trend selected
+            </div>
+            <button id="jack-btn" disabled>Jack this Trend</button>
+          </div>
+
+          <div id="result-area" class="result-area hidden">
+            <h3>Generated Meme</h3>
+            <img id="meme-image" src="" alt="Generated Meme" />
+            <br />
+            <a id="download-link" href="#" target="_blank" class="download-btn"
+              >Open/Save Image</a
+            >
+          </div>
+        </div>
+      </main>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>

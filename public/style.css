@@ -1,0 +1,183 @@
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #f4f4f9;
+    color: #333;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    min-height: 100vh;
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 20px auto;
+    background: #fff;
+    padding: 20px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    border-radius: 8px;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 30px;
+    border-bottom: 2px solid #eee;
+    padding-bottom: 20px;
+}
+
+header h1 {
+    margin: 0;
+    color: #2c3e50;
+}
+
+main {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.column {
+    flex: 1;
+    min-width: 300px;
+    padding: 20px;
+    background: #fafafa;
+    border-radius: 8px;
+    border: 1px solid #eee;
+}
+
+h2 {
+    margin-top: 0;
+    color: #2c3e50;
+    border-bottom: 2px solid #3498db;
+    padding-bottom: 10px;
+    display: inline-block;
+}
+
+/* Review: Trends List */
+.trends-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.trend-item {
+    background: #fff;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.trend-item:hover {
+    background: #eef2f7;
+    border-color: #3498db;
+    transform: translateX(5px);
+}
+
+.trend-item.selected {
+    background: #3498db;
+    color: #fff;
+    border-color: #2980b9;
+}
+
+/* Config Box */
+.form-group {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 600;
+}
+
+input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    box-sizing: border-box; /* Fixes padding issue */
+}
+
+/* Action Box */
+.action-box {
+    margin-top: 20px;
+    padding: 20px;
+    background: #e8f6f3;
+    border-radius: 8px;
+    border: 1px solid #d1f2eb;
+}
+
+.selected-trend-display {
+    font-style: italic;
+    color: #555;
+    margin-bottom: 15px;
+    padding: 10px;
+    background: #fff;
+    border: 1px dashed #bbb;
+    border-radius: 4px;
+}
+
+button {
+    background: #27ae60;
+    color: #fff;
+    border: none;
+    padding: 12px 24px;
+    font-size: 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 100%;
+    font-weight: bold;
+    transition: background 0.3s;
+}
+
+button:hover {
+    background: #219150;
+}
+
+button:disabled {
+    background: #95a5a6;
+    cursor: not-allowed;
+}
+
+/* Result Area */
+.result-area {
+    margin-top: 30px;
+    text-align: center;
+    border-top: 2px solid #eee;
+    padding-top: 20px;
+}
+
+.result-area.hidden {
+    display: none;
+}
+
+#meme-image {
+    max-width: 100%;
+    height: auto;
+    border: 2px solid #333;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    margin-bottom: 15px;
+}
+
+.download-btn {
+    display: inline-block;
+    background: #34495e;
+    color: #fff;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 4px;
+    font-weight: 600;
+}
+
+.download-btn:hover {
+    background: #2c3e50;
+}
+
+.loading {
+    color: #7f8c8d;
+    font-style: italic;
+}

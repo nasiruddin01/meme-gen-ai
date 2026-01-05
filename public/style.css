@@ -374,6 +374,7 @@ button#jack-btn:disabled {
 .progress-content {
   width: 100%;
   max-width: 300px;
+  margin: 0 auto; /* Ensure centering */
 }
 
 .progress-container h3 {
@@ -382,7 +383,7 @@ button#jack-btn:disabled {
   color: #333;
   font-weight: 700;
   min-height: 24px; /* Prevent jump */
-  min-height: 24px; /* Prevent jump */
+  text-align: center; /* Explicit center */
 }
 
 .progress-info {

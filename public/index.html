@@ -21,8 +21,6 @@
           </div>
         </div>
       </header>
-
-      <main>
       <main class="app-layout">
         <!-- Sidebar: Trending News -->
         <aside class="sidebar">
@@ -37,11 +35,9 @@
           <!-- Input Section -->
           <section class="config-panel">
             <div class="config-box">
-
-              
               <div class="form-group primary-input">
-                 <label for="brand-context">Brand Context</label>
-                 <input
+                <label for="brand-context">Brand Context</label>
+                <input
                   type="text"
                   id="brand-context"
                   placeholder="e.g., We sell spicy hot sauce"
@@ -49,7 +45,7 @@
               </div>
 
               <div class="form-row">
-                 <div class="form-group">
+                <div class="form-group">
                   <label for="resolution">Resolution</label>
                   <select id="resolution">
                     <option value="1024">2K (Standard)</option>
@@ -66,17 +62,19 @@
                   </select>
                 </div>
               </div>
-              
+
               <div class="selected-trend-info">
-                 <small>Selected Trend:</small>
-                 <div id="selected-trend" class="selected-trend-text">No trend selected</div>
+                <small>Selected Trend:</small>
+                <div id="selected-trend" class="selected-trend-text">
+                  No trend selected
+                </div>
               </div>
 
               <button id="jack-btn" disabled>GENERATE ARTWORK →</button>
-              
+
               <div class="footer-note">
-                  Generations Left: Loading... <br>
-                  Please use this tool responsibly.
+                Generations Left: Loading... <br />
+                Please use this tool responsibly.
               </div>
             </div>
           </section>
@@ -84,18 +82,27 @@
           <!-- Output Section -->
           <section class="result-panel">
             <div id="result-area" class="result-area">
-               <!-- Initial State / Empty State -->
-               <div id="empty-state" class="empty-state">
-                  <div class="empty-icon">🖼️</div>
-                  <h3>Ready to Create</h3>
-                  <p>Select a trend and configure settings to start generating your masterpiece.</p>
-               </div>
-               
-               <!-- Result State -->
-               <div id="generated-content" class="generated-content hidden">
-                  <img id="meme-image" src="" alt="Generated Meme" />
-                  <a id="download-link" href="#" target="_blank" class="download-btn">Download Artwork</a>
-               </div>
+              <!-- Initial State / Empty State -->
+              <div id="empty-state" class="empty-state">
+                <div class="empty-icon">🖼️</div>
+                <h3>Ready to Create</h3>
+                <p>
+                  Select a trend and configure settings to start generating your
+                  masterpiece.
+                </p>
+              </div>
+
+              <!-- Result State -->
+              <div id="generated-content" class="generated-content hidden">
+                <img id="meme-image" src="" alt="Generated Meme" />
+                <a
+                  id="download-link"
+                  href="#"
+                  target="_blank"
+                  class="download-btn"
+                  >Download Artwork</a
+                >
+              </div>
             </div>
           </section>
         </div>

@@ -162,9 +162,10 @@ header p {
   flex: 1;
   background: #fafafa;
   display: flex;
-  align-items: center;
-  justify-content: center;
+  /* align-items: center;  Removed to allow scrolling */
+  /* justify-content: center; Removed to allow scrolling */
   padding: 40px;
+  overflow-y: auto; /* Enable vertical scrolling */
 }
 
 /* Input Section Styling */
@@ -309,6 +310,7 @@ button#jack-btn:disabled {
   width: 100%;
   max-width: 500px;
   text-align: center;
+  margin: auto; /* Center vertically and horizontally if space allows */
 }
 
 .empty-state {

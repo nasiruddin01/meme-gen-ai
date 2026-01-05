@@ -382,6 +382,20 @@ button#jack-btn:disabled {
   color: #333;
   font-weight: 700;
   min-height: 24px; /* Prevent jump */
+  min-height: 24px; /* Prevent jump */
+}
+
+.progress-info {
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  margin-top: 5px;
+}
+
+#progress-percent {
+  font-size: 14px;
+  color: #d500f9;
+  font-weight: 700;
 }
 
 /* Spinner */
@@ -416,4 +430,65 @@ button#jack-btn:disabled {
   width: 0%;
   transition: width 0.5s ease-out;
   border-radius: 3px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  body {
+    align-items: flex-start;
+    height: auto;
+  }
+  
+  .container {
+    width: 100%;
+    height: auto;
+    min-height: 100vh;
+    border-radius: 0;
+  }
+
+  /* Header */
+  .brand-wrapper {
+    align-items: center;
+  }
+
+  /* Layout */
+  .app-layout {
+    flex-direction: column;
+    overflow: visible;
+  }
+
+  /* Sidebar */
+  .sidebar {
+    width: 100%;
+    border-right: none;
+    border-bottom: 1px solid var(--border-color);
+    max-height: 200px; /* Limit height of trends on mobile */
+    box-sizing: border-box;
+  }
+
+  /* Workspace */
+  .workspace {
+    flex-direction: column;
+  }
+
+  .config-panel {
+    border-right: none;
+    border-bottom: 1px solid var(--border-color);
+    padding: 20px;
+  }
+
+  .result-panel {
+    padding: 20px;
+    min-height: 400px;
+  }
+
+  /* Progress Bar */
+  .progress-container {
+    padding: 20px;
+  }
+
+  /* Text Sizes */
+  .config-box h2 {
+    font-size: 28px;
+  }
 }

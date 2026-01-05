@@ -7,6 +7,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // Progress Elements
   const progressContainer = document.getElementById("progress-container");
   const progressStatus = document.getElementById("progress-status");
+  const progressPercent = document.getElementById("progress-percent");
   const progressFill = document.getElementById("progress-fill");
   const emptyState = document.getElementById("empty-state");
   const generatedContent = document.getElementById("generated-content");
@@ -142,6 +143,7 @@ document.addEventListener("DOMContentLoaded", () => {
   function updateProgress(percent, text) {
     progressFill.style.width = `${percent}%`;
     if (text) progressStatus.textContent = text;
+    if (progressPercent) progressPercent.textContent = `${percent}%`;
   }
 
   function resetUI() {
